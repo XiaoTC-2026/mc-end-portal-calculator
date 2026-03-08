@@ -32,7 +32,7 @@
     .container{max-width:900px;margin:0 auto;background:#ffffff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
     .container-2{max-width:1200px;margin:0 auto;background:#ffffff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
     .container-3{max-width:900px;margin:0 auto;background:#ffffff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
-    .container-4{max-width:300px;margin:0 auto;background:#ffffff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+    .container-4{max-width:285px;margin:0 auto;background:#ffffff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08); text-align:right}
     h1{font-size:20px;font-weight:600;color:#161616;margin-bottom:20px;text-align:center}
     .text-muted-foreground{color:#606770;font-size:17px;margin-bottom:6px}
     .text-muted-GGbeng{color:#606770;font-size:13px;margin-bottom:24px}
@@ -106,6 +106,8 @@
     a{color: #333; text-decoration: none; transition: color 0.3s;}
     a:hover {color: #a81900;}
 </style>
+<div class="row">
+<div>
 <div class="container">
     <div class="row"><svg xmlns="http://www.w3.org/2000/svg"  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calculator w-6 h-6" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg><h1>Minecraft 末地要塞定位计算器（两点式直线法）</h1></div><p class="text-muted-foreground">通过两次末影之眼投掷的玩家站位和落点坐标连成的直线，来计算要塞位置。</p><p class="text-muted-GGbeng">利用末影之眼指向机制，通过两次投掷坐标，以几何算法精准计算要塞位置，助你高效探索。适合末地较大、要塞分布较稀疏的情况。需要两次投掷，且两次投掷的起点距离越远，定位结果越准确。</p>
     <div class="input-group"><label>第一次 玩家站位 (x₁, z₁)<div class="help-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-question"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg><div class="help-bubble">这里填写你在Minecraft世界中第一次投掷末影之眼时所站的位置的X和Z坐标。</div></div></label><div class="row"><div class="number-input"><input id="x1" placeholder="x₁"><div class="btn-group"><button class="btn-up" onclick="adj('x1',1)">▲</button><button class="btn-down" onclick="adj('x1',-1)">▼</button></div></div><div class="number-input"><input id="z1" placeholder="z₁"><div class="btn-group"><button class="btn-up" onclick="adj('z1',1)">▲</button><button class="btn-down" onclick="adj('z1',-1)">▼</button></div></div></div></div>
@@ -115,19 +117,24 @@
     <div class="btn-row"><button class="btn" onclick="calc()">查找末地要塞</button><button class="btn-reset" onclick="resetAll()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw w-4 h-4" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg><div>重置</div></button></div>
 </div><br>
 <div class="result-card" id="resultCard" style="display:none" >
-        <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big w-5 h-5" aria-hidden="true"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>传送门位置结果</h3>
-        <div class="tp-row"><div class="tp-box" id="tpCmd"></div><button class="copy-btn" onclick="copyCmd()">复制</button></div>
-        <div class="result-grid">
-            <div class="result-item"><label>预计传送门X坐标 <svg class="copy-icon" onclick="copyCoord('outX')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy w-4 h-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></label><div class="result-value blue" id="outX">-</div></div>
-            <div class="result-item"><label>预计传送门Z坐标 <svg class="copy-icon" onclick="copyCoord('outZ')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy w-4 h-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></label><div class="result-value green" id="outZ">-</div></div>
-            <div class="result-item"><label>到传送门的距离 <svg class="copy-icon" onclick="copyCoord('distRow')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy w-4 h-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></label><div class="result-value purple" id="distRow">-</div></div>
-        </div>
-        <div class="result-grid">
-            <div class="result-item"><label>传送门方向 <svg class="copy-icon" onclick="copyCoord('dir')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy w-4 h-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></label><div class="result-value red" id="dir">-</div></div>
-            <div class="result-item"><label>定位可信度 <svg class="copy-icon" onclick="copyCoord('conf')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy w-4 h-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></label><div class="result-value yellow" id="conf">-</div></div>
-        </div>
-        <strong><nodr class="row-2">“<div id="the-reply-from-the-developer-of-the-mcms.qzz.io-website">-</div>”</nodr></strong>
-    </div>
+<h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big w-5 h-5" aria-hidden="true"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>传送门位置结果</h3>
+<div class="tp-row"><div class="tp-box" id="tpCmd"></div><button class="copy-btn" onclick="copyCmd()">复制</button></div>
+<div class="result-grid">
+<div class="result-item"><label>预计传送门X坐标 <svg class="copy-icon" onclick="copyCoord('outX')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy w-4 h-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></label><div class="result-value blue" id="outX">-</div></div>
+<div class="result-item"><label>预计传送门Z坐标 <svg class="copy-icon" onclick="copyCoord('outZ')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy w-4 h-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></label><div class="result-value green" id="outZ">-</div></div>
+<div class="result-item"><label>到传送门的距离 <svg class="copy-icon" onclick="copyCoord('distRow')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy w-4 h-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></label><div class="result-value purple" id="distRow">-</div></div>
+</div>
+<div class="result-grid">
+<div class="result-item"><label>传送门方向 <svg class="copy-icon" onclick="copyCoord('dir')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy w-4 h-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></label><div class="result-value red" id="dir">-</div></div>
+<div class="result-item"><label>定位可信度 <svg class="copy-icon" onclick="copyCoord('conf')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy w-4 h-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></label><div class="result-value yellow" id="conf">-</div></div>
+</div>
+<strong><nodr class="row-2">“<div id="the-reply-from-the-developer-of-the-mcms.qzz.io-website">-</div>”</nodr></strong>
+</div>
+</div>
+<div class="container-4">
+        <h1>查找历史</h1><div id="history"></div>
+</div>
+</div>
 <br><div class="container-3"><div class="row"><img src="admin.png" alt="admin" style="width:60px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">&nbsp;&nbsp;<div><strong>本页面开发者:&nbsp;&nbsp;</strong>2025_XiaoTangcai<br><strong>本站职位:&nbsp;&nbsp;</strong>站长兼开发者</div>&nbsp;&nbsp;&nbsp;<div><strong>常驻服务器:&nbsp;&nbsp;</strong><a href="https://www.minecraftzw.com/44473.html" target="blank">2b2t.city</a><br><div><strong>开发者留言:&nbsp;&nbsp;</strong>我永远坚信“力大砖飞”</div></div>&nbsp;&nbsp;&nbsp;<strong>开发者主页:&nbsp;&nbsp;</strong><a href="https://center.mcmod.cn/1180626/" target="blank">mcmod.cn</a></div>
 <br><strong>[当前所在页面 Minecraft末地要塞定位计算器-你好,歪瞳 版本0.4.2a]</strong>
 <br><div class="row"><strong>[2026.3.1-20:10:56]</strong>Admin在tools.mcms.qzz.io创建了/et路由，当前版本0.0.1a</div>
