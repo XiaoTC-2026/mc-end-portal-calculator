@@ -32,7 +32,8 @@
     .container{max-width:900px;margin:0 auto;background:#ffffff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
     .container-2{max-width:1200px;margin:0 auto;background:#ffffff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
     .container-3{max-width:900px;margin:0 auto;background:#ffffff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
-    .container-4{max-width:285px;margin:0 auto;background:#ffffff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08); text-align:right}
+    .container-4{max-width:285px;margin:0 auto;background:#ffffff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08); text-align:right;}
+    .container-5{max-width:285px;margin:0 auto;background:#ffffff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08); text-align:right;}
     h1{font-size:20px;font-weight:600;color:#161616;margin-bottom:20px;text-align:center}
     .text-muted-foreground{color:#606770;font-size:17px;margin-bottom:6px}
     .text-muted-GGbeng{color:#606770;font-size:13px;margin-bottom:24px}
@@ -40,6 +41,8 @@
     .input-group label{display:block;font-size:14px;color:#4e5969;margin-bottom:6px}
     .row{display:flex;gap:8px}
     .row-2{display:flex;gap:8px}
+    .row-3{max-width:1200px;display:flex;gap:8px}
+    .row-4{max-width:1200px;display:flex;gap:8px}
     .number-input {flex: 1;display: flex;align-items: center;border: 1px solid #dbdbdb;border-radius: 6px;position: relative; overflow: hidden;height:2.25rem;margin: 0 5px;background-color: #ffffff;}
     .number-input input {flex: 1;padding: 10px 12px;border: none;font-size: 14px;outline: none;width: calc(100% - 60px);}
     .btn-group {display: flex;flex-direction: column;border-left: 1px solid #ffffff;opacity: 0;transition: opacity 0.2s;width: 25px;}
@@ -106,7 +109,7 @@
     a{color: #333; text-decoration: none; transition: color 0.3s;}
     a:hover {color: #a81900;}
 </style>
-<div class="row">
+<div class="row-3">
 <div>
 <div class="container">
     <div class="row"><svg xmlns="http://www.w3.org/2000/svg"  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calculator w-6 h-6" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg><h1>Minecraft 末地要塞定位计算器（两点式直线法）</h1></div><p class="text-muted-foreground">通过两次末影之眼投掷的玩家站位和落点坐标连成的直线，来计算要塞位置。</p><p class="text-muted-GGbeng">利用末影之眼指向机制，通过两次投掷坐标，以几何算法精准计算要塞位置，助你高效探索。适合末地较大、要塞分布较稀疏的情况。需要两次投掷，且两次投掷的起点距离越远，定位结果越准确。</p>
