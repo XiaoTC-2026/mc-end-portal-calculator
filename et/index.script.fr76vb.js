@@ -67,16 +67,6 @@ function adj(id, d){
     const i=document.getElementById(id);
     i.value=(parseFloat(i.value)||0)+d;
 }
-async function copyCmd(){
-    const txt=document.getElementById('tpCmd').textContent;
-    await navigator.clipboard.writeText(txt);
-    alert('复制成功！');
-}
-async function copyCoord(id){
-    const txt=document.getElementById(id).textContent;
-    await navigator.clipboard.writeText(txt);
-    alert('复制成功！');
-}
 function calc(){
     const x1=+document.getElementById('x1').value||0
     const z1=+document.getElementById('z1').value||0
