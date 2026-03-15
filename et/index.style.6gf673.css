@@ -84,6 +84,3 @@ a:hover {color: #a81900;}
 .djce65 {width:60px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
 .rur750 {margin-top: 8px;}
 .jc7473 {text-align:center}
-.kdcn74 {display: flex;align-items: center;gap: 6px;padding: 12px 16px;background: #fdfdfd;color: #000000;font-size: 15px;border-radius: 6px;box-shadow: 0 4px 12px rgba(0,0,0,0.15);position: fixed;top: -100px;left: 50%;transform: translateX(-50%) translateY(-100%);z-index: 9999;opacity: 0;transition: all 0.3s ease;pointer-events: none;}
-.kdcn74.show {top: 20px;transform: translateX(-50%) translateY(0);opacity: 1;} 
-.ejbc25 {color: #313131;}
