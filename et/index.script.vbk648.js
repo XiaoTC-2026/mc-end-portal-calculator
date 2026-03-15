@@ -1,10 +1,12 @@
-document.addEventListener('DOMContentLoaded', function () {
-const toast = document.getElementById('nve947');
 function showToast() {
+    const toast = document.getElementById('copy-toast');
+    if (!toast) return;
     toast.classList.remove('show');
-    void toast.offsetWidth;
+    void toast.offsetWidth; 
     toast.classList.add('show');
-    setTimeout(() => { toast.classList.remove('show'); }, 2000);
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 5000);
 }
 async function copyCmd(){
     const txt = document.getElementById('tpCmd').textContent;
@@ -16,4 +18,3 @@ async function copyCoord(id){
     await navigator.clipboard.writeText(txt);
     showToast();
 }
-});
