@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function () {
 const toast = document.getElementById('nve947');
 function showToast() {
     toast.classList.remove('show');
@@ -15,3 +16,4 @@ async function copyCoord(id){
     await navigator.clipboard.writeText(txt);
     showToast();
 }
+});
