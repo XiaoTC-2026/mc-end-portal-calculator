@@ -84,5 +84,3 @@ a:hover {color: #a81900;}
 .djce65 {width:60px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
 .rur750 {margin-top: 8px;}
 .jc7473 {text-align:center}
-#nve947{display: flex; align-items: center; gap: 6px;padding: 10px 16px; background: #333; color: #fff;font-size: 14px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);position: fixed; top: 20px; left: 50%; transform: translate(-50%, -100%);z-index: 9999; opacity: 0; pointer-events: none;transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;}
-#nve947.show {transform: translate(-50%, 0); opacity: 1;}
