@@ -21,6 +21,9 @@
 <meta name="author" content="mcms.qzz.io, 2025_XiaoTangcai, XiaoTC-2026, HAHA_starSEA">
 <link rel="icon" href="https://tools.mcms.qzz.io/et/index.favicon.ch5h94.webp" type="image/webp">
 <link rel="stylesheet" href="index.style.6gf673.css">
+<link rel="stylesheet" href="index.katex.506101c1.min.cbcv75.css">
+<script defer src="index.katex.87c56817.min.jcbw64.js"></script>
+<script defer src="index.auto-render.2e427455.min.cds773.js"></script>
 <style>.kdcn74 {display: flex;align-items: center;gap: 6px;padding: 12px 16px;background: #fdfdfd;color: #000000;font-size: 15px;border-radius: 6px;box-shadow: 0 4px 12px rgba(0,0,0,0.15);position: fixed;top: -100px;left: 50%;transform: translateX(-50%) translateY(-100%);z-index: 9999;opacity: 0;transition: all 0.3s ease;pointer-events: none;}.kdcn74.show{top: 20px;transform: translateX(-50%) translateY(0);opacity: 1;}.ejbc25 {color: #313131;}</style>
 </head>
 <body>
@@ -52,7 +55,7 @@
 </div>
 <div class="row-3bfb23">
 <div class="container-3"><div class="row"><img class="djce65" src="https://tools.mcms.qzz.io/et/index.admin.vhf589.webp" alt="admin">&nbsp;&nbsp;<div><strong>本页面开发者:&nbsp;&nbsp;</strong>2025_XiaoTangcai<br><strong>本站职位:&nbsp;&nbsp;</strong>站长兼开发者</div>&nbsp;&nbsp;&nbsp;<div><strong>常驻服务器:&nbsp;&nbsp;</strong><a href="https://www.minecraftzw.com/44473.html" target="blank">2b2t.city</a><br><div><strong>开发者留言:&nbsp;&nbsp;</strong>我永远坚信“力大砖飞”</div></div>&nbsp;&nbsp;&nbsp;<strong>开发者主页:&nbsp;&nbsp;</strong><a href="https://center.mcmod.cn/1180626/" target="blank">mcmod.cn</a></div>
-<br><strong>[当前所在页面 歪瞳 | Minecraft末地要塞定位计算器 - 精准查找传送门坐标 (无需指令/两点定位法) 版本0.5.0b]</strong>
+<br><strong>[当前所在页面 歪瞳 | Minecraft末地要塞定位计算器 - 精准查找传送门坐标 (无需指令/两点定位法) 版本0.5.0c]</strong>
 <br><div class="row"><strong>[2026.3.1-20:10:56]</strong>Admin在tools.mcms.qzz.io创建了/et路由，当前版本0.0.1a</div>
 <br><div class="row"><strong>[2026.3.4-10:30:43]</strong>2025_XiaoTangcai加入了站点名片，当前版本0.4.1a</div>
 <br><div class="row"><strong>[2026.3.4-10:32:06]</strong>更新日志:修复了一些已知bug，当前版本0.4.1a</div>
@@ -64,15 +67,11 @@
 <br><div class="row"><strong>[2026.3.13-17:32:05]</strong>更新日志:优化了用户体验，并撤销了部分更改，当前版本0.4.3c</div>
 <br><div class="row"><strong>[2026.3.14-22:29:43]</strong>更新日志:优化了用户体验，加入了些“似乎没什么卵用”的东西，当前版本0.5.0a</div>
 <br><div class="row"><strong>[2026.3.15-16:10:53]</strong>更新日志:优化了用户体验，当前版本0.5.0b</div>
+<br><div class="row"><strong>[2026.3.20-18:15:23]</strong>更新日志:优化了用户体验，当前版本0.5.0c</div>
 </div>
-<div class="container-4vne67">
-<div class="jc7473"><strong>一些好东西</strong></div>
-<div class="text-muted-GGbeng">这里有一些有关Minecraft的项目链接，你也许可以看看他们，然后再自己再想一个</div>
-<a href="https://neoforged.net" target="blank">
-    <img src="https://tools.mcms.qzz.io/imgs/neoforge_logo.webp" width="165px" alt="neoforged.net">
-</a>
-</div>
-</div>
+<div class="container-4vne67"><div class="jc7473"><strong>一些好东西</strong></div><div class="text-muted-GGbeng">这里有一些有关Minecraft的项目链接，你也许可以看看他们，然后再自己再想一个</div>
+<a href="https://neoforged.net" target="blank"><img src="https://tools.mcms.qzz.io/imgs/neoforge_logo.webp" width="165px" alt="neoforged.net"></a>
+</div></div>
 <br><div class="container-2">
 <br><br><div class="tXyZ11"><h3>什么是Minecraft末地传送门查找及其重要性？</h3><ul><li><a href="#1">定义与目的</a></li><li><a href="#2">游戏机制</a></li><li><a href="#3">数学基础</a></li></ul></div>
         <p class="pLmN77">Minecraft末地传送门查找是定位包含末地传送门的要塞的过程。末地传送门是通往末地维度、挑战末影龙和进入游戏后期内容的关键。该过程依赖于末影之眼的特殊行为，这些行为可通过数学分析来确定传送门位置。</p>
@@ -98,9 +97,9 @@
         <div class="section_head">1. 记录坐标</div>
         <div class="section_para"><div><strong>第一次投掷：</strong>记录玩家站位坐标 (x₁, z₁) 和末影珍珠落点坐标 (x₂, z₂)。</div><div><strong>第二次投掷：</strong>记录玩家站位坐标 (x₃, z₃) 和末影珍珠落点坐标 (x₄, z₄)。</div></div>
         <div class="section_head">2. 计算直线斜率 (k) 和截距 (b)</div>
-        <div class="section_para"><div>将每组点代入直线方程 z = kx + b，解出每条直线的 k 和 b 值。</div><div class="rur750"><strong>第一条直线：</strong><br>k₁ = (z₂ - z₁) / (x₂ - x₁)<br>b₁ = z₁ - k₁ * x₁</div><div class="rur750"><strong>第二条直线：</strong><br>k₂ = (z₄ - z₃) / (x₄ - x₃)<br>b₂ = z₃ - k₂ * x₃</div></div> 
+        <div class="section_para"><div>将每组点代入直线方程 z = kx + b，解出每条直线的 k 和 b 值。</div><div class="rur750"><strong>第一条直线：</strong><br><p>$$ k_1 = \frac{z_2 - z_1}{x_2 - x_1} $$</p><br><p>$$ b_1 = z_1 - k_1 x_1 $$</p></div><div class="rur750"><strong>第二条直线：</strong><br><p>$$ k_2 = \frac{z_4 - z_3}{x_4 - x_3} $$</p><br><p>$$ b_2 = z_3 - k_2 x_3 $$</p></div></div> 
         <div class="section_head">3. 计算交点 (要塞坐标)</div>
-        <div class="section_para"><div>将两条直线方程联立，解出交点的坐标 (x, z)。</div><div class="rur750"><strong>x 坐标公式：</strong> x = (b₂ - b₁) / (k₁ - k₂)</div><div><strong>z 坐标公式：</strong> z = k₁ * x + b₁ (将求得的 x 代入任意一条直线方程即可)</div></div>
+        <div class="section_para"><div>将两条直线方程联立，解出交点的坐标 (x, z)。</div><div class="rur750"><strong>x 坐标公式：</strong> <p>$$ x = \frac{b_2 - b_1}{k_1 - k_2} $$</p></div><div><strong>z 坐标公式：</strong> <p>$$ z = k_1 x + b_1 $$</p> (将求得的 x 代入任意一条直线方程即可)</div></div>
     </div>
 <br><div class="text-muted-GGbeng">本计算器如有bug请全部当做特性对待，注意：如果计算器的结果显示NaN（即Not a Number），就是你的输入的坐标过于完美导致空间量子坍缩，需要点一下重置。</div>
     <div class="text-muted-GGbeng">如果你靠本计算器未找到末地要塞，那很有可能是末影之眼今天心情不好，或者你的运气值需要充值了。请保持微笑，按下 F5，让“特性”再次降临。</div>
@@ -113,7 +112,7 @@
 </body>
 </html>
 <!--由mcms.qzz.io提供-->
-<!--代码版本0.4.3.c-->
+<!--代码版本0.5.0c-->
 <!--
 “代码规范？那是给普通人定的。”
 “我的代码，我做主。”
