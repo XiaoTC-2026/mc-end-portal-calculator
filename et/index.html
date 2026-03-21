@@ -92,15 +92,42 @@
         <p class="pLmN77">除基础三角定位外，高阶玩家还会用复杂数学模型预测要塞位置。这包括世界生成算法、末影之眼行为统计分析和机器学习等。社区工具和计算器不断进化，定位能力日益精准。</p>
         <div class="gRyB88"><h4>进阶应用：</h4><ul><li>种子分析：探索前预判传送门位置</li><li>统计建模：用概率提升定位精度</li><li>社区工具：与他人共享和验证传送门坐标</li><li>自动化系统：开发脚本自动查找传送门</li></ul></div>
 <br><br><div class="header_title"><div class="title_text">Minecraft 末地要塞两点式直线法计算指南</div><div>步骤详解与数学原理</div></div>
-    <div class="calc_box">
-        <div class="box_title">步骤详解：</div>
-        <div class="section_head">1. 记录坐标</div>
-        <div class="section_para"><div><strong>第一次投掷：</strong>记录玩家站位坐标 (x₁, z₁) 和末影珍珠落点坐标 (x₂, z₂)。</div><div><strong>第二次投掷：</strong>记录玩家站位坐标 (x₃, z₃) 和末影珍珠落点坐标 (x₄, z₄)。</div></div>
-        <div class="section_head">2. 计算直线斜率 (k) 和截距 (b)</div>
-        <div class="section_para"><div>将每组点代入直线方程 z = kx + b，解出每条直线的 k 和 b 值。</div><div class="rur750"><strong>第一条直线：</strong><br><p>$$ k_1 = \frac{z_2 - z_1}{x_2 - x_1} $$</p><br><p>$$ b_1 = z_1 - k_1 x_1 $$</p></div><div class="rur750"><strong>第二条直线：</strong><br><p>$$ k_2 = \frac{z_4 - z_3}{x_4 - x_3} $$</p><br><p>$$ b_2 = z_3 - k_2 x_3 $$</p></div></div> 
-        <div class="section_head">3. 计算交点 (要塞坐标)</div>
-        <div class="section_para"><div>将两条直线方程联立，解出交点的坐标 (x, z)。</div><div class="rur750"><strong>x 坐标公式：</strong> <p>$$ x = \frac{b_2 - b_1}{k_1 - k_2} $$</p></div><div><strong>z 坐标公式：</strong> <p>$$ z = k_1 x + b_1 $$</p> (将求得的 x 代入任意一条直线方程即可)</div></div>
+    <!--测试片段-->
+<div class="calc_box">
+    <div class="box_title">步骤详解：</div>
+    <div class="section_head">1. 记录坐标</div>
+    <div class="section_para">
+        <div><strong>第一次投掷：</strong>记录玩家站位坐标 (x₁, z₁) 和末影珍珠落点坐标 (x₂, z₂)。</div>
+        <div><strong>第二次投掷：</strong>记录玩家站位坐标 (x₃, z₃) 和末影珍珠落点坐标 (x₄, z₄)。</div>
     </div>
+    <div class="section_head">2. 计算直线斜率 (k) 和截距 (b)</div>
+    <div class="section_para">
+        <div>将每组点代入直线方程 z = kx + b，解出每条直线的 k 和 b 值。</div>
+        <div class="rur750">
+            <strong>第一条直线：</strong>
+            <p>$$ k_1 = \frac{z_2 - z_1}{x_2 - x_1} $$</p>
+            <p>$$ b_1 = z_1 - k_1 x_1 $$</p>
+        </div>
+        <div class="rur750">
+            <strong>第二条直线：</strong>
+            <p>$$ k_2 = \frac{z_4 - z_3}{x_4 - x_3} $$</p>
+            <p>$$ b_2 = z_3 - k_2 x_3 $$</p>
+        </div>
+    </div>
+    <div class="section_head">3. 计算交点 (要塞坐标)</div>
+    <div class="section_para">
+        <div>将两条直线方程联立，解出交点的坐标 (x, z)。</div>
+        <div class="rur750">
+            <strong>x 坐标公式：</strong>
+            <p>$$ x = \frac{b_2 - b_1}{k_1 - k_2} $$</p>
+        </div>
+        <div>
+            <strong>z 坐标公式：</strong>
+            <p>$$ z = k_1 x + b_1 $$</p>
+            (将求得的 x 代入任意一条直线方程即可)
+        </div>
+    </div>
+</div>
 <br><div class="text-muted-GGbeng">本计算器如有bug请全部当做特性对待，注意：如果计算器的结果显示NaN（即Not a Number），就是你的输入的坐标过于完美导致空间量子坍缩，需要点一下重置。</div>
     <div class="text-muted-GGbeng">如果你靠本计算器未找到末地要塞，那很有可能是末影之眼今天心情不好，或者你的运气值需要充值了。请保持微笑，按下 F5，让“特性”再次降临。</div>
     <div class="text-muted-GGbeng">由mcms.qzz.io提供</div>
