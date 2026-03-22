@@ -84,4 +84,5 @@ a:hover {color: #a81900;}
 .djce65 {width:60px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
 .rur750 {margin-top: 8px;}
 .jc7473 {text-align:center}
-.My-Name-Is-Error {display:none;color:red;font-size:12px;}
+.My-Name-Is-Error{display:none}
+.My-Name-Is-Error.show{display:flex;color:#ff0000;font-size:20px}
