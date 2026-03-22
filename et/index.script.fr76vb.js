@@ -67,75 +67,95 @@ function adj(id, d){
     const i=document.getElementById(id);
     i.value=(parseFloat(i.value)||0)+d;
 }
-function calc(){
-    const x1=+document.getElementById('x1').value||0
-    const z1=+document.getElementById('z1').value||0
-    const x2=+document.getElementById('x2').value||0
-    const z2=+document.getElementById('z2').value||0
-    const x3=+document.getElementById('x3').value||0
-    const z3=+document.getElementById('z3').value||0
-    const x4=+document.getElementById('x4').value||0
-    const z4=+document.getElementById('z4').value||0
-    const k1=(z2-z1)/(x2-x1)
-    const b1=z1-k1*x1
-    const k2=(z4-z3)/(x4-x3)
-    const b2=z3-k2*x3
-    const x=(b2-b1)/(k1-k2)
-    const z=k1*x+b1
-    const y=36
+function calc() {
+    const errorElement = document.getElementById('My-Name-Is-Error');
+    errorElement.textContent = '无错误';
+    errorElement.parentElement.classList.remove('show');
+    const getNum = (id) => {
+        const val = document.getElementById(id)?.value || '';
+        const num = parseFloat(val);
+        return isNaN(num) ? 0 : num;
 /* 末影之眼今天心情不好，或者你的运气值需要充值了。请保持微笑，按下 F5，让“特性”再次降临，不是源代码的问题哦 */
-    const startDist=Math.hypot(x3-x1, z3-z1)
-    let conf,confText
-    if(startDist<100){ conf='低'; confText='低' }
-    else if(startDist<300){ conf='中'; confText='中' }
-    else{ conf='高'; confText='高' }
-    const toFortDist=Math.hypot(x-x1, z-z1)
-    const dx=x-x1
-    const dz=z-z1
-    let dir = "";
-    const absDx = Math.abs(dx);
-    const absDz = Math.abs(dz);
-    if (Number.isNaN(dx) || Number.isNaN(dz)) {
-dir = "未知";
-}
-else if (Math.abs(dx) < 0.001 && Math.abs(dz) < 0.001) {
-dir = "无";
-}
-else {
-const absDx = Math.abs(dx);
-const absDz = Math.abs(dz);
-if (absDx > absDz) {
-    if (dx > 0) {
-        dir = (dz > 0) ? "东南" : "东北";
-    } else {
-        dir = (dz > 0) ? "西南" : "西北";
-    }
-} else if (absDz > absDx) {
-    if (dz > 0) {
-        dir = (dx > 0) ? "东南" : "西南";
-    } else {
-        dir = (dx > 0) ? "东北" : "西北";
-    }
-} else {
-    if (dx > 0) {
-        dir = (dz > 0) ? "东南" : "东北";
-    } else {
-        dir = (dz > 0) ? "西南" : "西北";
-    }
-}
-}
+    };
+    const x1 = getNum('x1');
+    const z1 = getNum('z1');
+    const x2 = getNum('x2');
+    const z2 = getNum('z2');
+    const x3 = getNum('x3');
+    const z3 = getNum('z3');
+    const x4 = getNum('x4');
+    const z4 = getNum('z4');
+    try {
+        let k1, b1, k2, b2, x, z;
+        if (x2 - x1 === 0) {
+            throw new Error('第一组采样点的X坐标不能相同！');
+        }
+        k1 = (z2 - z1) / (x2 - x1);
+        b1 = z1 - k1 * x1;
+        if (x4 - x3 === 0) {
+            throw new Error('第二组采样点的X坐标不能相同！');
+        }
+        k2 = (z4 - z3) / (x4 - x3);
+        b2 = z3 - k2 * x3;
+        // 4. 求解交点（处理直线平行的情况）
+        if (k1 === k2) {
+            throw new Error('两条直线平行，无法计算交点！请更换采样点。');
+        }
 /* 末影之眼今天心情不好，或者你的运气值需要充值了。请保持微笑，按下 F5，让“特性”再次降临，不是源代码的问题哦 */
-    const rx=Math.round(x)
-    const rz=Math.round(z)
-    const cmd = `/tp @s ${Number.isNaN(rx) ? '~' : rx} ~ ${Number.isNaN(rz) ? '~' : rz}`;
-    document.getElementById('resultCard').style.display='block'
-    document.getElementById('tpCmd').textContent=cmd
-    document.getElementById('outX').textContent=rx
-    document.getElementById('outZ').textContent=rz
-    document.getElementById('distRow').textContent=`${Math.round(toFortDist)} blocks`
-    document.getElementById('dir').textContent=dir
-    document.getElementById('conf').textContent=confText
-    document.getElementById('the-reply-from-the-developer-of-the-mcms.qzz.io-website').textContent = getRandomReply();
+        x = (b2 - b1) / (k1 - k2);
+        z = k1 * x + b1;
+        if (isNaN(x) || isNaN(z) || !isFinite(x) || !isFinite(z)) {
+            throw new Error('坐标计算异常，请检查输入的采样点！');
+        }
+        const startDist = Math.hypot(x3 - x1, z3 - z1);
+        let confText;
+        if (startDist < 100) {
+            confText = '低';
+        } else if (startDist < 300) {
+            confText = '中';
+        } else {
+            confText = '高';
+        }
+        const toFortDist = Math.hypot(x - x1, z - z1);
+        const dx = x - x1;
+        const dz = z - z1;
+        let dir = "";
+        const absDx = Math.abs(dx);
+        const absDz = Math.abs(dz);
+        if (Number.isNaN(dx) || Number.isNaN(dz)) {
+            dir = "未知";
+        } else if (absDx < 0.001 && absDz < 0.001) {
+            dir = "当前位置";
+        } else {
+            if (absDx > absDz) {
+                dir = dx > 0 ? (dz > 0 ? "东南" : "东北") : (dz > 0 ? "西南" : "西北");
+            } else {
+                dir = dz > 0 ? (dx > 0 ? "东南" : "西南") : (dx > 0 ? "东北" : "西北");
+            }
+        }
+/* 末影之眼今天心情不好，或者你的运气值需要充值了。请保持微笑，按下 F5，让“特性”再次降临，不是源代码的问题哦 */
+        const rx = Math.round(x);
+        const rz = Math.round(z);
+        const cmd = `/tp @s ${Number.isNaN(rx) ? '~' : rx} ~ ${Number.isNaN(rz) ? '~' : rz}`;
+        const resultCard = document.getElementById('resultCard');
+        if (resultCard) {
+            resultCard.style.display = 'block';
+            document.getElementById('tpCmd').textContent = cmd;
+            document.getElementById('outX').textContent = rx;
+            document.getElementById('outZ').textContent = rz;
+            document.getElementById('distRow').textContent = `${Math.round(toFortDist)} blocks`;
+            document.getElementById('dir').textContent = dir;
+            document.getElementById('conf').textContent = confText;
+            if (typeof getRandomReply === 'function') {
+                const replyEl = document.getElementById('the-reply-from-the-developer-of-the-mcms.qzz.io-website');
+                if (replyEl) replyEl.textContent = getRandomReply();
+            }
+        }
+/* 末影之眼今天心情不好，或者你的运气值需要充值了。请保持微笑，按下 F5，让“特性”再次降临，不是源代码的问题哦 */
+    } catch (error) {
+        errorElement.textContent = error.message;
+        errorElement.parentElement.classList.add('show');
+    }
 }
 
 function resetAll(){
