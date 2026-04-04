@@ -262,13 +262,11 @@ function calc() {
             const val = document.getElementById(id).value.trim();
             if (val !== "" && isNaN(parseFloat(val))) {
                 throw new Error(`输入数据包含无效字符：${id}`);
-                console.error(`输入数据包含无效字符：${id}`);
             }
         }
         const denominator = (x2 - x1) * (z4 - z3) - (z2 - z1) * (x4 - x3);
         if (Math.abs(denominator) < 0.00001) {
             throw new Error("两条视线平行或重合，无法计算交点！");
-            console.error("两条视线平行或重合，无法计算交点！");
         }
         const x = (
             (x1 * z2 - z1 * x2) * (x4 - x3) - 
